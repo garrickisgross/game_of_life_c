@@ -17,7 +17,7 @@ int main(){
   {
     SDL_Event event;
 
-    done = poll_event(&event, &cells, &running, &reset);
+    done = poll_event(&event, cells, &running, &reset);
 
     SDL_Surface* surface = SDL_GetWindowSurface(window);
 

@@ -2,12 +2,12 @@
 #define CELLS_H
 #include <stdbool.h>
 #include <stdlib.h>
-
+#include <SDL3/SDL_main.h>
 typedef struct Cell
 {
   int x, y;
-  int color;
   bool active;
+  Uint32 color;
 
 } Cell;
 

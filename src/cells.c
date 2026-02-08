@@ -2,6 +2,8 @@
 #include "game.h"
 #include <stdlib.h>
 
+#define CELL_INDEX(r, c) ((r) * NUM_COLS + (c))
+
 Cell* init_cells(){
   // Allocating an array of size Cell * Area of cells based on cell size. 
   Cell cell;

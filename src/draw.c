@@ -3,14 +3,15 @@
 #include "cells.h"
 #include <SDL3/SDL.h>
 #include <stdlib.h>
+
+
+
 SDL_Window* init_SDL()
 {
    bool init = SDL_Init(SDL_INIT_VIDEO);
-   SDL_Window* window;
- 
    if (init)
   {
-     window = SDL_CreateWindow(TITLE,WIDTH + WIN_PAD,HEIGHT + WIN_PAD,0);
+     SDL_Window* window = SDL_CreateWindow(TITLE,WIDTH + WIN_PAD,HEIGHT + WIN_PAD,0);
      if (window == NULL) 
     {
       SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Error initializing window: %s\n", SDL_GetError());

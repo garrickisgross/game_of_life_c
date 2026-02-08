@@ -5,6 +5,7 @@
 #include <SDL3/SDL.h>
 
 
+#define CELL_INDEX(r, c) ((r) * NUM_COLS + (c))
 
 void gol(Cell* cells){
   for (int row = 0; row < NUM_ROWS; row++){

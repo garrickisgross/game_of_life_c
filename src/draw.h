@@ -1,11 +1,9 @@
 #ifndef DRAW_H
 #define DRAW_H
-
-struct SDL_Window;
-struct SDL_Surface;
-struct Cell;
+#include <SDL3/SDL.h>
+#include "cells.h"
 
 struct SDL_Window* init_SDL();
-void draw_cells(struct SDL_Surface* surface, struct Cell* cells);
+void draw_cells(SDL_Surface* surface, Cell* cells);
 
 #endif

@@ -3,21 +3,27 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include "cells.h"
+#include <stdio.h>
 
+
+#define CELL_INDEX(r, c) ((r) * NUM_COLS + (c))
 
 void processMouseClick(SDL_Event* event, Cell* cells){
   int x = (int)event->button.x;
   int y = (int)event->button.y;
 
+
   int grid_x = x - (WIN_PAD/2);
   int grid_y = y - (WIN_PAD/2);
+
 
   if (grid_x < 0 || grid_x >= WIDTH || grid_y < 0 || grid_y >= HEIGHT) return;
 
   int col = grid_x / CELL_SIZE;
   int row = grid_y / CELL_SIZE;
 
-  int index = row * NUM_COLS + col;
+
+  int index = CELL_INDEX(row, col);
 
   cells[index].active = !cells[index].active;
   cells[index].color = cells[index].active ? ACTIVE_COLOR : INACTIVE_COLOR;

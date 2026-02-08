@@ -13,12 +13,11 @@
 #define NUM_ROWS HEIGHT/CELL_SIZE
 #define NUM_COLS WIDTH/CELL_SIZE
 #define WIN_PAD 250
-#define CELL_INDEX(r, c) ((r) * NUM_COLS + (c))
 
-struct Cell;
+#include "cells.h"
 
-void gol (struct Cell* cells);
-void reset_game (struct Cell* cells);
+void gol (Cell* cells);
+void reset_game (Cell* cells);
 
 
 #endif // !MAIN_H
