@@ -1,4 +1,4 @@
 main
-build/
-nob
+./build/
+./nob
 nob.old
