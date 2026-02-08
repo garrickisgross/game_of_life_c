@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef GAME_H
+#define GAME_H
 
 
 #define TITLE "Conway's Game of Life"
@@ -15,12 +15,11 @@
 #define WIN_PAD 250
 #define CELL_INDEX(r, c) ((r) * NUM_COLS + (c))
 
+struct Cell;
 
-typedef struct Cell {
-  int x, y; 
-  bool active;
-  Uint32 color;
-} Cell;
+void gol (struct Cell* cells);
+void reset_game (struct Cell* cells);
+
 
 #endif // !MAIN_H
 

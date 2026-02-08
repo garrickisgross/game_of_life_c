@@ -1,11 +1,9 @@
-#include <SDL3/SDL.h> 
-#include <SDL3/SDL_main.h>
+#include "draw.h"
+#include "game.h"
+#include "cells.h"
+#include <SDL3/SDL.h>
 #include <stdlib.h>
-
-
-
-
-SDL_Window init_SDL()
+SDL_Window* init_SDL()
 {
    bool init = SDL_Init(SDL_INIT_VIDEO);
    SDL_Window* window;
@@ -15,10 +13,14 @@ SDL_Window init_SDL()
      window = SDL_CreateWindow(TITLE,WIDTH + WIN_PAD,HEIGHT + WIN_PAD,0);
      if (window == NULL) 
     {
-       SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
-       return window
+      SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Error initializing window: %s\n", SDL_GetError());
+      exit(-1);
     }
-  } else 
+
+     return window;
+  }
+
+  else 
   {
     SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Error Initializing SDL: %s\n", SDL_GetError());
     exit(-1);

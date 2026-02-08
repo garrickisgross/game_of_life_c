@@ -1,57 +1,24 @@
-#include <stdio.h> 
-#include <SDL3/SDL.h> 
-#include <SDL3/SDL_main.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include "game.h"
+#include "cells.h"
+#include "event.h"
+#include "draw.h"
+#include <SDL3/SDL.h>
 
-
-#include "./main.h"
-#include "./draw.h"
-#include "./event.h"
-#include "./cells.h"
-
-
-void gol(Cell* cells){
-  for (int row = 0; row < NUM_ROWS; row++){
-    for (int col = 0; col < NUM_COLS; col++){
-      int index = CELL_INDEX(row, col);
-
-      int alive = count_alive_neighbors(cells, row, col);
-      int dead = 8 - alive;
-      
-      bool toggle = false;
-      if (cells[index].active){
-        
-        if (alive < 2 || alive > 3){
-           toggle = true;
-        }
-
-
-      } else {
-        
-        if (alive == 3){
-          toggle = true;
-        }
-      }
-
-      if (toggle){
-        cells[index].active = !cells[index].active;
-        cells[index].color = cells[index].active ? ACTIVE_COLOR : INACTIVE_COLOR;
-      }
-    }
-  }
-}
 
 int main(){
   bool done = false;
-  SDL_Window window = init_SDL(); 
+  SDL_Window* window = init_SDL(); 
   Cell* cells = init_cells();
   bool running = false;
   bool reset = false; 
+
   // Main Loop
   while(!done)
   {
-    done = poll_event()
+    SDL_Event event;
+
+    done = poll_event(&event, &cells, &running, &reset);
+
     SDL_Surface* surface = SDL_GetWindowSurface(window);
 
     if (running){

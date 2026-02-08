@@ -1,8 +1,9 @@
-#include <SDL3/SDL.h> 
+#include "event.h"
+#include "game.h"
+#include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "./main.h"
+#include "cells.h"
+
 
 void processMouseClick(SDL_Event* event, Cell* cells){
   int x = (int)event->button.x;
@@ -42,17 +43,16 @@ void processKeys(SDL_Event* event, Cell* cells, bool* running, bool* reset){
 }
 
 // returns true if need to quit 
-bool poll_event() { 
-  SDL_Event event;
-  while (SDL_PollEvent(&event))
+bool poll_event(SDL_Event* event, Cell* cells, bool* running, bool* reset) { 
+  while (SDL_PollEvent(event))
   {
       
-    if (event.type == SDL_EVENT_QUIT)
+    if (event->type == SDL_EVENT_QUIT)
     {
       return true;
     }
-      processKeys(&event, cells, &running, &reset);
+      processKeys(event, cells, running, reset);
   }
-
   return false;
 }
+

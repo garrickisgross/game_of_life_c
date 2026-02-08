@@ -1,11 +1,18 @@
-#include "./main.h"
-
+#include "cells.h"
+#include "game.h"
+#include <stdlib.h>
 
 Cell* init_cells(){
   // Allocating an array of size Cell * Area of cells based on cell size. 
   Cell cell;
   int size = (NUM_COLS) * (NUM_ROWS);
   Cell* cells = (Cell*) malloc(sizeof(cell) * size);
+
+  if (!cells){
+    exit(-1);
+  }
+
+
 
   // Loop through and create the cells.
   int i = 0;
@@ -27,7 +34,8 @@ static const int NEIGHBORS[8][2] = {
   { 1, -1}, { 1, 0}, { 1, 1}
 };
 
-int count_alive_neighbors(Cell* cells, int row, int col){
+int count_alive_neighbors(const Cell* cells, int row, int col)
+{
   int count = 0;
   
   for (int n = 0; n < 8; n++){
@@ -41,16 +49,4 @@ int count_alive_neighbors(Cell* cells, int row, int col){
 
   return count;
 }
-
-void reset_game(Cell* cells){
-  for (int row = 0; row < NUM_ROWS; row++){
-    for (int col = 0; col < NUM_COLS; col++){
-      int i = CELL_INDEX(row, col);
-      cells[i].active = false;
-      cells[i].color = INACTIVE_COLOR;
-    }
-  }
-
-}
-
 
